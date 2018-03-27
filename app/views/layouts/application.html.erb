@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OmniWanme</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id="user-widget">
+      <% if current_user %>
+        Welcome <strong><%= current_user.name %></strong>!<br>
+        <%= image_tag current_user.image %>
+        <%= link_to "Sign Out", signout_path, id: "sign_out" %>
+      <% else %>
+        <%= link_to "Sign in with GitHub", "/auth/github" %> <br>
+        <%= link_to "Sign in with Instagram", "/auth/instagram" %>
+      <% end %>
+    </div>
+    <%= yield %>
+  </body>
+</html>
